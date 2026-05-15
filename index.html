@@ -526,83 +526,157 @@
             the game they are also presented with a textbox that they can fill in with information about their username.
 
             <br>- What are the possible threats against your project? State these threats in terms of
-            actors/actions/attacks/assets/objectives?
+            actors/actions/attacks/assets/objectives?<br>
             <br>Threat 1: Malicious code snippet insertion
             Given that the game is currently hosted only locally, the level of threat is limited to the potential of
-            accessing only one's own data. However, for the purspose of discussing the potential threats I will assume
-            that the game is hosted on a server, where the holes in security may lead to an actual access to a different
+            accessing only one's own data. However, for the purspose of discussing the potential threats I will
+            assume
+            that the game is hosted on a server, where the holes in security may lead to an actual access to a
+            different
             device.
-            <br>Actor: Anyone interested in accessing data from a server. Given that the server is hosting the game for
+            <br>Actor: Anyone interested in accessing data from a server. Given that the server is hosting the game
+            for
             many players, it can be assumed that they could be interested in stealing the user information of other
-            players. That could be just a nosy person, or someone interested in exploiting information of some players'
-            IP address along with their game choices and username information, which in it of itself could be somewhat
+            players. That could be just a nosy person, or someone interested in exploiting information of some
+            players'
+            IP address along with their game choices and username information, which in it of itself could be
+            somewhat
             sensitive information.
-            <br>Actions/Attacks: Inserting a code snippet into the username textbox at the start of the game so that it
+            <br>Actions/Attacks: Inserting a code snippet into the username textbox at the start of the game so that
+            it
             interacts with our code and allows the attacker to access a database of all players.
             <br>Assets: A well designed code snippet will give the access for the attacker to the unprotected data
-            stored on the server. Given our lack of security around player information storage, this would allow them to
+            stored on the server. Given our lack of security around player information storage, this would allow
+            them to
             access any information about the player. Since I am considering the game host to connect with player
-            clients, the IP informmation would be certainly collected, meanining that an attacker would be able to track
-            the players' footprints online. That could allow them to target these individuals in some form, outside of
-            the game. I assume that for a skiled attacker it is not a challenge to find plausible individual information
-            given an IP address, especially if they utilize previously stolen data that includes the two. That can be
-            used for more attacks, for example, they could target a phishing message to a current GrinnSim user and pose
+            clients, the IP informmation would be certainly collected, meanining that an attacker would be able to
+            track
+            the players' footprints online. That could allow them to target these individuals in some form, outside
+            of
+            the game. I assume that for a skiled attacker it is not a challenge to find plausible individual
+            information
+            given an IP address, especially if they utilize previously stolen data that includes the two. That can
+            be
+            used for more attacks, for example, they could target a phishing message to a current GrinnSim user and
+            pose
             as the developers of the game (say, organizing a merch giveway). Such phishing situation could allow the
             attackers to steal more information that is of higher market value, such as a bank account information.
-            Furthermore, they could also learn about player's game activity that is being recorded in their data files,
-            which could be interpreted as sensitive. For example, if the player's character has a strange username like
-            "i steal bikes in south campus", or if they regularly make the choice to be in a relationship with same-sex
-            characters, the information could be used to blackmail them. Knowing that the application is targetted to
+            Furthermore, they could also learn about player's game activity that is being recorded in their data
+            files,
+            which could be interpreted as sensitive. For example, if the player's character has a strange username
+            like
+            "i steal bikes in south campus", or if they regularly make the choice to be in a relationship with
+            same-sex
+            characters, the information could be used to blackmail them. Knowing that the application is targetted
+            to
             Grinnell College students the attackers could pose a threat of creating a YikYak account and post the
             player's gaming history for all to see.
             Objectives: The attack could allow for financial gains, but also just a distruption and chaos. One could
-            imagine that a potential attacker is a Grinnell College student that wants to learn about a gaming history
+            imagine that a potential attacker is a Grinnell College student that wants to learn about a gaming
+            history
             of their biggest enemy, and use it for public humiliation or sense of power.
             <br>
             <br>Threat 2: Alternation of data source files
             <br>Actor: An avid player who wants to improve their game performance
-            <br>Actions/Attacks: Change of the data files so that they are in favor for the player. In practice, just
-            accessing data storing files and chagning the vallues of the different statistics. Now they can show off to
+            <br>Actions/Attacks: Change of the data files so that they are in favor for the player. In practice,
+            just
+            accessing data storing files and chagning the vallues of the different statistics. Now they can show off
+            to
             their friends who keep on failing every time they try to win. How is that fair??
-            <br>Assets: The actor would not need any more skillset or tools than what any person using computer already
+            <br>Assets: The actor would not need any more skillset or tools than what any person using computer
+            already
             probably knows -- accessing folder files and changing values in csv table
-            <br>Objectives: Gaining advantage over other players (when compared to other players who also play locally).
+            <br>Objectives: Gaining advantage over other players (when compared to other players who also play
+            locally).
             If the game was ever advanced to multiplayer level, that would also lead to unfair advantage that would
             impact the gameplay of others.
             <br>
             <br>Threat 3: Overloading of the disc (local equivalent of DDoS)
             <br>Actor: A player that does not want to have fun. Or that is sharing a desktop with someone else (the
             school computers) and wants to corrupt the correct function of that device.
-            <br>Actions/Attacks: Creating an outside snippet that changes the name of the saved file "player-data.txt"
-            right after creation, and calls for the game repetitively. This would make it so that the game creates a new
-            game file every time, and if closed right after startup could quickly (in relation to the age of earth) fill
+            <br>Actions/Attacks: Creating an outside snippet that changes the name of the saved file
+            "player-data.txt"
+            right after creation, and calls for the game repetitively. This would make it so that the game creates a
+            new
+            game file every time, and if closed right after startup could quickly (in relation to the age of earth)
+            fill
             up disc space and limit its functionality. Even better if they encrypt the data files in some secretive
             folder and a basic computer user will not know why their computer stopped working fast (or turning on
             without command line) after they let thier roomate play the game.
             <br>Assets: The attacker would need to understand how the files are saved and create a working script to
             exploit it, which does not seem to be too high-end kind of attack
-            <br>Objectives: Creating chaos or targetting a specific individual and their device to temporailry lose some
+            <br>Objectives: Creating chaos or targetting a specific individual and their device to temporailry lose
+            some
             functionality.
             <br>
             <br>- Triage each threat, describing how you will handle the threat in your project (if any).
-            <br>Threat 1: The text box is currently handling input under 20 characters, which should allow for limited
-            access. However, it may not be enough for a skilled hacker who could take many different logins to convey
-            and write their full message into some part of the system. So instead, the textbox should verify whether the
+            <br>Threat 1: The text box is currently handling input under 20 characters, which should allow for
+            limited
+            access. However, it may not be enough for a skilled hacker who could take many different logins to
+            convey
+            and write their full message into some part of the system. So instead, the textbox should verify whether
+            the
             input is not code (for example prohibit some characers like - or /).
-            <br>Threat 2: The data files could be set to be read-only and not allowed to be changed. At this point, when
+            <br>Threat 2: The data files could be set to be read-only and not allowed to be changed. At this point,
+            when
             stored locally, the game allows for all kinds of intereactions.
-            <br>Threat 3: Implementing some form of logging of the information and concurrent checks if the log suggests
+            <br>Threat 3: Implementing some form of logging of the information and concurrent checks if the log
+            suggests
             malicious activiity could help stop the program if such activity is detected.
 
         </p>
         <li>Verification</li>
-        <p><b>WHERE</b>: </p><br>
-        <p><b>MY CONTRIBUTION</b>: </p><br>
+        <p><b>WHERE</b>: Here below!</p><br>
+        <p><b>MY CONTRIBUTION</b>: The mock testing</p><br>
         <p><b>DESCRIPTION</b>:<br>
+            - What advanced testing tool or technology did you employ in your code?
+            I created a mock testing suite
 
+            - What did this tool/technology validate in your program?
+            The testing suite was intended to validate the functionality of the code that is responsible for general
+            user interaction, the game state management and the file recording. It was intended to make sure that the
+            game state is correctly updated in response to the user actions, and that the data files are updated with
+            the correct information after each age-up round of the game.
+
+            - How effective was it in this task?
+            It was moderately effective. I got to play out some of the scenarios I already did with the code when
+            testing its capabilities, but this time do it in a more ordered way.
+
+            - In what contexts did you envision yourself utilizing this tool/technology in the future?
+            I feel like performing a mock testing on a piece of software is quite useful, but at the same time it can
+            rarely function as a way to fully test the abilit of the program to successfully perform while accounting
+            for underlying processes that may not be visible as bugs to the user.
 
 
         </p><br>
+        <pre>Begin the game by dragging the game file into a love alias logo
+            See the logo display
+            The logo should slowly fade in
+            See the login menu
+            Try typing in the text box
+            Try writing over 20 letters, that should not be allowed. 
+            Press around the screen, but not on the button. When the button is not pressed nothing should happen.
+            Press the button.
+            See the character creation menu
+            For each changeable element of the visuals for the player, do press the arrows up until you get to the visual element you started with. Every press of the arrow should lead to a change in the design of the visual you see. Record every element as you pass through them, up until the visual design you started with. Then press the arrow facing the other direction and verify whether the elements you see are displayed in the reversed order of what you saw before.
+            Pass through the step “a” for each of the elements of the visuals for the character
+            See the main menu
+            Verify that you see all the buttons in the menu: Grades, Life scores, weeks progress, actions left, and stats button, as well as your username and the visuals of your character
+            Verify whether your user information and the character visuals are as you entered them at the start.
+            Press “stats” : verify that none of the statistics is 0%. Verify that every statistic above 50% is colored in green and those below are colored in brown.
+            Record the information provided in this section
+            Press on your username box and verify whether the information in the box matches that on the main screen. Then verify if that information is correct to the initial state of the game.
+            Press on the main button on the bottom - the age-up button.
+            See the pop-up window
+            Read through the message and ensure it is clear to understand 
+            Verify whether the changes in statistics correspond to the type of message you received
+            Verify the information on statistics changes provided in the textbox, and record it.
+            Go to “Stats” and record the percentage values of the statistics affected by the change. 
+            Go to the leftmost button in the bottom menu and press the topmost button in the pop-up menu you will see. Continue until you receive a pop-up window. Then, follow the steps from 6a. 
+            Continue through step 7 until you run out of actions for the game. Then, proceed to the next week by pressing the middle button in the bottom menu. Continue revisiting all the menu options starting from the topmost one to the bottom, while calculating the changes between each session. 
+            
+            You should always see a change in the statistics that is displayed in the pop-up window. 
+            </pre>
         <li>Quality: Imagine that you were up for promotion and your case rests on the quality of your project's
             codebase. Provide an overall evaluation its quality.</li><br>
         <p>
