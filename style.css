@@ -5,3 +5,28 @@ div {
     border: 5px solid red;
     margin: 0;
 }
+
+.h1 {
+    padding-right: 20px;
+    font-size: 20px;
+    color: blue;
+}
+
+.h2 {
+    padding-right: 20px;
+    font-size: 18px;
+    color: blue;
+}
+
+li {
+    padding-right: 40px;
+    font-size: 16px;
+    color: black;
+    text-decoration: bold;
+}
+
+li p {
+    padding-right: 40px;
+    font-size: 14px;
+    color: black;
+}

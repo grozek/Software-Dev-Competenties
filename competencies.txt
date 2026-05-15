@@ -76,7 +76,6 @@ Describe a specific occurrence in which your testing infrastructure saved you an
 
 
 
-
 --------------- Design ---------------
 --------------------------------------
 Needfinding: Identify relevant artifacts from the human-centered design process that address the following points.
@@ -168,4 +167,10 @@ Engineering
 --------------------------------------
 Quality: Provide an overall evaluation of the overall quality of your codebase.
 In what ways does your codebase exemplify engineering excellence?
+In what ways does it fall short? How would you addressed these issues if given more time?
+
+--------------------------------------
+Quality: Imagine that you were up for promotion and your case rests on the quality of your project's codebase. Provide an overall evaluation its quality.
+--------------------------------------
+In what ways does your codebase exemplify engineering excellence? Be exhaustive as possible in your analysis.
 In what ways does it fall short? How would you addressed these issues if given more time?
