@@ -26,6 +26,7 @@ li {
     font-size: 16px;
     color: black;
     text-decoration: bold;
+    white-space: pre-line;
 }
 
 li p {
@@ -33,4 +34,5 @@ li p {
     padding-left: 40px;
     font-size: 14px;
     color: black;
+    white-space: pre-line;
 }
