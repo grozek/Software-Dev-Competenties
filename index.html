@@ -10,11 +10,11 @@
     <h2>Required</h2>
     <ol>
         <li>Development: Medium-scale abstraction</li>
-        <p><b>WHERE</p></b>: scenes/manager.lua, all scene files in scene/..
-        <b>MY CONTRIBUTION</b>: Coming up with the conceptual structure of the scene transitions, writing
-        the code for manager.lua, creating the folder and sub-folder structure, as well as the scene
-        transition calls across all the scenes. I used online reference to love2d and lua in coming up with
-        this format, and used the help of genAI copilot in helping me with the code format and debaugging.
+        <p><b>WHERE</b>: scenes/manager.lua, all scene files in scene/..</p>
+        <p><b>MY CONTRIBUTION</b>: Coming up with the conceptual structure of the scene transitions, writing
+            the code for manager.lua, creating the folder and sub-folder structure, as well as the scene
+            transition calls across all the scenes. I used online reference to love2d and lua in coming up with
+            this format, and used the help of genAI copilot in helping me with the code format and debaugging.</p>
 
         <p><b>DESCRIPTION</b>:
             - What functionality does your code sample abstract away?<br>
@@ -44,15 +44,16 @@
         </p><br><br>
         <li>Development: Medium-scale architecture</li>
         <p>
-            <b>WHERE</b>: stats_init.lua<br>
-            <b>MY CONTRIBUTION</b>: MY CONTRIBUTION: Functions that interact with a statistics data file -- verify its
+            <b>WHERE</b>: stats_init.lua
+        </p><br>
+        <p><b>MY CONTRIBUTION</b>: MY CONTRIBUTION: Functions that interact with a statistics data file -- verify its
             existance, load it, check or change value and update loaded table. Specficially, functions: save_data(),
             stats_init.delete_save_file(), stats_init.change_stat(key, delta), is_game_existing(),
             stats_init.load_data(path), stats_init.data_setup(), stats_init.change_value(key, new_value),
             stats_init.reset_player_data(). I collaborated with Connor working on this file, but he was in charge of
             creating the statistical updates to the table while I created the system of interacting with the text file
-            that holds information between the login sessions.<br>
-            <b>DESCRIPTION</b><br>
+            that holds information between the login sessions.</p><br>
+        <p><b>DESCRIPTION</b><br>
             - What architectural pattern does your program employ?<br>
             The program employs multilayer architectural pattern. There is a layer of interface presented to the user,
             the operations underlying their actions and managing the display of the interface, the operations
@@ -141,10 +142,11 @@
 
         </p>
         <li>Verification: Testing infrastructure</li><br>
-        <b>WHERE: stats_init.lua, stats_back.lua</b><br>
-        <b>MY CONTRIBUTION: Creating the system of interacting with the file data and ensuring it is functioning - by
-            myself. Use of AI for debugging and fill-in suggestions when they made sense with my goals</b><br>
-        <p><b>CODE SNIPPETS:</b><br>
+        <p><b>WHERE</b>: stats_init.lua, stats_back.lua</p><br>
+        <p><b>MY CONTRIBUTION</b>: Creating the system of interacting with the file data and ensuring it is functioning
+            - by
+            myself. Use of AI for debugging and fill-in suggestions when they made sense with my goals</p><br>
+        <p><b>CODE SNIPPETS:</b></p><br>
         <pre>
         (in stats_back.lua)
         function delete_all_files()
@@ -226,9 +228,10 @@
             the types of jobs selected for the parents.<br><br>
         </p>
         <li>Design: Needfinding</li><br>
-        <b>WHERE: Assignment on Needfinding and Ideation -- observation 1</b><br>
-        <b>MY CONTRIBUTION: An observation performed with a potential user of our app -- performed entirely by
-            myself</b><br>
+        <p><b>WHERE</b>: Assignment on Needfinding and Ideation -- observation 1</p><br>
+        <p><b>MY CONTRIBUTION</b>: An observation performed with a potential user of our app -- performed entirely by
+            myself
+        <p><br>
         <p><b>DESCRIPTION</b><br>
             - What techniques did you employ to discover users' needs?<br>
             I completed an observation of a person interacting with a game used as an inspiration for
@@ -273,15 +276,255 @@
             otherwise could have been accessed by pressing onto a button for "more information")<br><br>
         </p>
         <li>Design: Evaluation</li><br>
+        <p><b>WHERE</b>: I recorded notes from our interaction presented below</p><br>
+        <p><b>MY CONTRIBUTION</b>: Performing the game presentation and interview with the user</p><br>
+        <p><b>DESCRIPTION</b><br>
+            - What was the design of your user study to evaluate your artifact?<br>
+            I presented the application to a fellow Grinnell student and asked them to play with it for 15 minutes -
+            similarly to what the initial needfinding study looked like. I presented them with the application on the
+            desktop and asked to interact with it as if they were playing any game, and informed them that the general
+            purpose of the game is to pass the semester as a Grinnellian student.<br>
+
+            - What were the results of this user study?<br>
+            I observed the user while they were interacting with the application and then asked for their impression of
+            the experience.<br>
+
+            Observation + Feedback:<br>
+            - The user really enjoyed selecting the character design<br>
+            - At the start they went through the few menu options and explored their possibilities of different
+            activites. After a minute spent browsing around the different options and the bar on the main menu, they
+            started interacting with the game by pressing the age-up button (accidentally).<br>
+            - The user selected activities within the club and relationships before they ran out of the actions for the
+            round, which they were surprised by. It appeared as they did not realize that there is only a set number of
+            actions they can perform at a time, which is a feature distinct from bitlife and that may be the source of
+            confusion.<br>
+            - After the display of pop-up window showing poor academic standing, they swearved towards having the
+            character spend their time studying, which intended to improve their deteriorating academic performance.
+            This continued for the next few age-up rounds and the user started to seem surprised or confused with the
+            reason for such situation. They "were doing all they can" to improve their academic standing but felt as if
+            the game was not responsive to their actions.<br>
+            - By the week 8 they asked whether there is a "drop out" option in the game. Then, they proceeded to stop
+            trying to improve their academic standing and instead explored the non-academic forms of activites. They
+            enjoyed the humor of the options and the descriptions within them.<br>
+            - They found it disappointing that the information displayed in response to their actions (the pop up
+            window) is the same between the game rounds.<br>
+            - At week 10 they engaged in jiu-jitsu and were audibly surprised by the improved performance. They
+            continued on pressing it until the final week of the game.<br>
+
+            What were the main points of future development that you took away from this activity?<br>
+            - Clearer instructions: It would be benefitial to make it clear what is the functionality of the age-up
+            button, as well as that there are limited actions. We could implement a simple tutorial information
+            displayed at the first run of the game.<br>
+            - Diverse information in pop-up windows in response to actions. We could use a source file with different
+            potential results of the actions, so that the game is more entertaining and the user can keep performing the
+            same action with new results.<br>
+            - Adding a drop-out option: A consideration - maybe it should be possible, or maybe the suffering of playing
+            towards the end is our goal?<br>
+            - Weighing statistics: It is a fun feature of the game to discover that jiu-jitsu is the ultimate reason for
+            a game win, but the statistics should be better responsive to the actions of the user so that they don't
+            feel discouraged.<br>
+            <br>
+        </p>
         <li>Engineering: Infrastructure</li>
+        <p><b>WHERE</b>: Github page for the project</p><br>
+        <p><b>MY CONTRIBUTION</b>: Creating, commiting and merging from multiple branches
+        </p><br>
+        <p><b>DESCRIPTION</b>:<br>
+            - What development tools did you use through process to help write code and automate the build/deployment
+            process?<br>
+            Github features. Specicially, the branching system. Before working on this project I was not really using
+            branches and found them confusing, however the expeirence of working on multiple issues and creating
+            separate branches for them really supported me in the development process. I found it much clearer to make
+            progress on each of them without accidental overwriting of previous progress or ending up in situations
+            where one feature was implemented (and code worked) while the new one did not and I would struggle with
+            publishing my updates (have to backtrack and un-commit changes) before publishing for others to see. So it
+            was a great learning for me and it significantly improved my productivity and enjoyment.<br>
+
+            - What is one specific problem (e.g., debugging and issue) that you encountered while writing code and how
+            did your tools help or hinder your ability to address that problem?<br>
+            There were a lot of issues that I can think of, but one specific that comes to my mind is the time I tried
+            to implement buttons that utilized assets. I created blue-button.jpg assets while working on a specific
+            issue branch and added them to the design. They were mostly functional, but would lead to bugs if not added
+            to all scenes of the project. My motivation for creating the buttons was to improve our visual design as at
+            the time we did not have any, but the task was assigned to another teammate. I chose not to merge the code
+            into the main just yet, and soon after a teammate added their, fully functional design. So in this situation
+            I was able to create my own development without the worry of having others encounter the issues related to
+            my design that they may not be aware of how to solve, while a new development was on the way. At the same
+            time it was a chance for me to have a backup option in case the other design was not made in time, which is
+            when I could merge it into main. I really like branches now!<br>
+            <br>
+        </p>
         <li>Engineering: Self-learning</li>
+        <p><b>WHERE</b>: Technology in-class presentation</p><br>
+        <p><b>MY CONTRIBUTION</b>: Creation of the slides and presenting the information on love2d and lua</p><br>
+        <p><b>DESCRIPTION</b>:<br>
+            - Describe the technology that the tutorial addresses and how it fits into your project.<br>
+            I discussed the (brief) origin of both Lua and Love2d, their features and advantages that were the reason
+            for my group to use them in our project. Since our project is entirely based on using love2d that is written
+            in lua, it was a direct relation to what I spend most of the time working on within the project.<br>
+
+            - Evaluate how useful the tool was in your work. What were its strengths and weaknesses, especially in
+            comparison with other tools you have used.<br>
+            Without the use of love2d and lua the project would take entirely different shape. Most importantly, the use
+            of the lua langauge and love2d framwork allowed us for a relatively low learning curve in the development
+            process. Lua is highly abstracted, which makes it much easier to create visual elements or work with data -
+            something that allowed us to think more of the game development conceptually than go down in details.
+            Despite love2d being relatively easy to use I found it not particularly straight forward when it comes to
+            installation and initial setup, and found the official resources to be often lacking, confusing or simply
+            not effective. Another downside is the poor availability of testing suites that can be used in the code,
+            which made our testing process more challenging and less effective. When compared with Unity that I worked
+            with before, these tools are much easier to acquire as we can work directly with the code, and not UI. For
+            the same reason it is more compelling than GameMaker that we considered using, as it allows us to actually
+            code and use more elaborate problem solving strategies.<br>
+
+            - Identify one particular sticking point to using this technology that you would want your team to know
+            about when adopting the tool and how you resolved it.<br>
+            An important feature that I would appreciate recognizing ahead of facing the problem is the differences in
+            how some functions work in lua and love2d liblaries. When trying to open and save files I found that the
+            love2d function only allowed saving the file to a pre-defined directory that can't be changed (the file can
+            only be moved). This caused a problem where the data files we saved would not land in the intended spot, in
+            fact, they would not even save becasue the designated directory did not exist. So instead, we had to switch
+            to slightly lower-level functions from Lua that needed to open and close the file each time when writing,
+            but this allowed us for control of the saving directory, which was necessary for the functionality.<br>
+            <br>
+        </p>
         <li>Engineering: Process</li>
+        <p><b>WHERE</b>: Github Repository of our project / Practical work practices</p><br>
+        <p><b>MY CONTRIBUTION</b>: Technical: Performing multiple commits, pull requests, code reviews, creating issues
+            and assigning others to them, working on different branches. Practical: Setting up and participating in team
+            meetings, frequent text correspondence, setting up goals for sprints</p><br>
+        <p><b>DESCRIPTION</b>:<br>
+            - What software engineering practices did your group employ to manage, distribute, and execute on their
+            work?<br>
+            We used a shared Github repository to share our work with each other and make regular updates to the
+            project. At first we all created our unique branches, but then switched to working on individual branches
+            for each issue that we were assigned to. We also collaboratively assigned each other to the tasks - if a
+            development was needed for a part of the project that a particular team member was responsible for, we would
+            create an issue and assign it to them. We also reviewed each others code when merging from branches to main,
+            and approved of them if they were acceptable.<br>
+            Practical: We also tried to work on our non-technical practices around the project. That included regular or
+            incidental meetings, being responsive in the text communication between each other, setting up goals for our
+            forseeable future and assigning each other to complete them as well as recursively reconsidering our future
+            goals and adjusting them according to the current progress.<br>
+
+            - In your estimation, how well did your group follow through on using these processes throughout the
+            semester?<br>
+            It certainly took us a bit to understand the full functionality of github and how it can help us to increase
+            our productivity and ease of workflow. At first we encountered issues that slowed us down, and not everyone
+            was on the same page on how to add the files to the repository through either vscode or terminal (instead of
+            direct upload). However, through few meetings where we focused on setting up the team practices around using
+            github we developed much more comfort with the github tools and it became unthinkable of how we would have
+            otherwise worked without it. So it was certainly a process. We could have started it earlier on the right
+            note, but we did it just in the right time to be able to facilitate all the code updates we needed. I think
+            we all value the github tools, and while it may have started as a necessity because of course requirement it
+            really became a standard we (or at least I) will voluntairly follow in the future.<br>
+            Practical: We started off with a lot of energy, but had a lot of trouble sticking to the initial plan as a
+            group. We would often have a missing representation in class, or miss/reschedule meetings. What functioned
+            well was communication, as we did not encounter a situation when either of us went unresponsive, and we
+            tried to foster a positive attitude towards our challenges and not let the troubles get in the way of trying
+            again. We also could have worked better on defining clear goals for each spirnt and making sure everyone is
+            aware of their responsibilities. In retrospect, a system of accountability would also be helpful, so that we
+            all feel responsible for our tasks to a greater extent than it was in practice.<br>
+
+            - What, if anything, got in the way of integrating these process into your workflow?<br>
+            At first it was hard getting started. We are all on different levels of previous expriences with github and
+            different prefered styles of working. So we needed to get settled in before getting into the zone, which
+            included looking up some tutorials, whenever necessary, or talking through how we envision our workflow to
+            look like with the use of these tools.<br>
+            Practical: The true answer will probably be "life", but I worry that this does not sound techy/academic
+            enough. Anyway, I think that we all cared about our project and wanted to contribute our best but maybe it
+            is the feeling of fast approaching graduation that got us sometimes disconnected from the goals of the
+            project, or some personal/health problems that we all were going through at some points that deprioritized
+            academic performance over personal wellbeing. There are always things that can get in the way and there is
+            no way to account for that really. My main takeway for that though is that I wish we created a better system
+            of making little steps towards our goals. I feel like at some points it was the fear of having this grand
+            project waiting for us to finish it that kept us from making the smallest commit that would ignite our
+            passion for success of this project.
+            <br><br>
+        </p>
         <li>Engineering: Collaboration</li>
+        <p><b>WHERE</b>: Github Repository of our project</p><br>
+        <p><b>MY CONTRIBUTION</b>: Performing multiple commits, pull requests, code reviews, creating issues and
+            assigning others to them, working on different branches, discussing with teammates</p><br>
+        <p><b>GITHUB ACTIVITY SAMPLE</b>: code review, issues: e.g. #48, #46, #43, #35, #32, pull requests, issues: #45,
+            #41, #40, #37, #22</p>
+        <p><b>DESCRIPTION</b>:<br>
+            Issue1: pull request #43 (https://github.com/Grinnell-Gaymers/GrinnSim/pull/43)<br>
+            Issue2: merge of issues #15, #4 (https://github.com/Grinnell-Gaymers/GrinnSim/issues/15,
+            https://github.com/Grinnell-Gaymers/GrinnSim/pull/4)<br>
+            Issue3: creating issue #13 (https://github.com/Grinnell-Gaymers/GrinnSim/issues/13)<br>
+            <br>
+            - Identify the work you did in each of these instances.<br>
+            Issue1: I was a code reviewer for the submission of a merge request to main for an update of visuals for
+            buttons.<br>
+            Issue2: While not reflected well in the documentation of this merge, it was actually a very important step
+            in our development. The team member working on this code didn't feel really comfortable using github so
+            uploaded all the code directly to github webpage through upload feature instead of using the command line.
+            Since that would be a great challenge both for him and for the team to coordiante our work, I wanted to make
+            sure he felt comforable using github from that point on. So we met together a couple of times to first set
+            up a git repository on his computer, and then connect it to our project. We discussed in detail the steps
+            that it takes to operate in github environment -- checking status, adding, commiting, pushing, merging,
+            approving merges, changing directories, changing branches etc. This included elements specific to our
+            project. So behind this commit there was a lot of our work together finished in going step-by-step to start
+            using remote control of our code updates.<br>
+            Issue3: In this issue I was disclosing the sprint expectations for the visual components of our program that
+            we discusseed in class. The issue was assigned to the team member who expressed interest in pursuing these
+            kind of tasks, and who was not able to make it to class that day. So as a form of communication, but also
+            notekeeping for myself and the rest of our team I created an issue and assigned the interested team member
+            to it.<br>
+
+            - Describe the difficulties that necessitated communication with your peers in each instance.
+            Issue1: In this pull request my team member was trying to add his visual components to the project, but when
+            looking at the merge request I noticed that he tried to upload a whole package that was not even used in his
+            design. So I made notice of that in the comment and asked to have him remove it to not pollute our project
+            with unused code that may come across as confusing. Then, he made an update but it appeared that no
+            significant code was added (the code that was supposed to add the buttons), so I checked in again to ask him
+            to add the needed code he must have removed along with previous packages.<br>
+            Issue2: I realized that when chatting with my team member that he does direct uploads, as he was not familar
+            with the status of our git repositories at the time. Having already written the first chunk of statistics
+            code it seemed only reasonable to have him get onto github as soon as possible, so that he would not be
+            missing more of my pushes that happened in the meantime of his initial download to the moment he tried to
+            publish his changes.<br>
+            Issue3: This issue was a form of support for us all to know where we stand at the plans for creating
+            progress visuals-wise. It was also intended to update our team member on what ideas we have for them when it
+            comes to the next tasks, and it felt like creating it in an issue form will be a good way to communicate it
+            and allow them to work on the issue without the need to create a new set of issues, and possibly have the
+            chance to have a chat in the responses to the issue creation.<br>
+
+            Did you encounter any difficulties in collaboration with team during these instances? If so, how did you
+            resolve those difficulties?<br>
+            Issue1: No, it was a smooth process. It was just a couple of mistakes in the submission of the code so I
+            don't think that there were any grounds for potential difficulty communcation-wise. I appreciated their
+            responsiveness to the comments!<br>
+            Issue2: I think the only issue is that I didn't realize that my team member was not on the same page when it
+            comes to the use of github until quite late in the semester. However, it became obvious quite quickly when
+            we actually started collaborating on the code, so it was a great moment for a fix. And it was great to work
+            together on it, and I appreciated his willingness to have my try to be the person explaining (I don't want
+            to sound like I'm full of my github skills here, as we know they are just slightly hoovering over the sea
+            level)<br>
+            Issue3: Unfortunately the issue was left untouched, which left me deeply saddened. No, it didn't actually.
+            But unfortunately it took a few more sprints before the goals for this one were achieved. Instead of using
+            github as a communication tool we went with instant messaging that feels more friendly and emphatetic than
+            getting ominous automatic email from outlook saying that you are assigned a task after missing a class and
+            feeling bad about it. So it worked out in the end, and it was a try of creating tasks for others that turned
+            out to work better if they create them by themselves.<br>
+
+
+            <br>
+        </p>
     </ol>
     <h2>Advanced</h2>
     <ol>
         <li>Development</li>
+        <p><b>WHERE</b>: </p><br>
+        <p><b>MY CONTRIBUTION</b>: </p><br>
+        <p><b>DESCRIPTION</b>:<br>
+        </p>
         <li>Verification</li>
+        <p><b>WHERE</b>: </p><br>
+        <p><b>MY CONTRIBUTION</b>: </p><br>
+        <p><b>DESCRIPTION</b>:<br>
+        </p>
     </ol>
 </body>
 
