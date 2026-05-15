@@ -107,7 +107,10 @@ Describe a specific occurrence in which your testing infrastructure saved you an
 Needfinding: Identify relevant artifacts from the human-centered design process that address the following points.
 --------------------------------------
 What techniques did you employ to discover users' needs?
+I completed an observation of a person interacting with a game used as an inspiration for our project -- BitLife. For about 15 minutes I watched as they played with the application while recording some of their choices, patterns of behavior and presumed reactions to what was happening in the game.
+
 What did you learn about users' needs from this process?
+I found that the user was engaged in the game, and seemed to enjoy playing with it. It was interesting to see them gain an understanding of the game's functionality without explicit need for a tutorial - thanks to a very straight-forward user interface. They also seemed to be naturally drawn to positively impact the life of their character and set them up for a success in all dimensions of the game (so generally, improving the life scores, academic performance when in school and work performance when at workforce). That seemed to show that BitLife design can serve as a compelling model for our application  
 
 --------------------------------------
 Prototyping: Identify relevant artifacts from the human-centered design process that address the following points.
