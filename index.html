@@ -41,7 +41,7 @@
             structure to the way the scenes operate and provides a clean functionality that requires a potential
             developer to only concern themselves with single-scene functionality but no need to be call each of
             the scene functionalities explicitly in the caller snippet.<br>
-        </p>
+        </p><br><br>
         <li>Development: Medium-scale architecture</li>
         <p>
             <b>WHERE</b>: stats_init.lua<br>
@@ -73,7 +73,7 @@
             The game is created using love2d and lua language, and uses their features to employ our architecture. On of
             love2d's core function -- draw(), facilitates the display of visuals to the user; load() enables timed
             actions only upon the program startup, update() enables for regular updates of the backend information
-            (statistics, saving to the files).<br>
+            (statistics, saving to the files).<br><br>
 
         </p>
         <li>Verification: Testing strategies</li>
@@ -137,10 +137,94 @@
         names are actually selected and we are not under illusion of random name/age/job selection. So in retrospect
         it would have been more accurate to create a testing suite that generates a list of say 100 names (same with
         jobs), and prints them into a testing file, wile calculating the number of times each appeared to ensure
-        reasonable distribution.<br>
+        reasonable distribution.<br><br>
 
         </p>
         <li>Verification: Testing infrastructure</li><br>
+        <b>WHERE: stats_init.lua, stats_back.lua</b><br>
+        <b>MY CONTRIBUTION: Creating the system of interacting with the file data and ensuring it is functioning - by
+            myself. Use of AI for debugging and fill-in suggestions when they made sense with my goals</b><br>
+        <p><b>CODE SNIPPETS:</b><br>
+        <pre>
+        (in stats_back.lua)
+        function delete_all_files()
+            for _, filename in ipairs(filename_list) do
+                delete_save_file(filename)
+            end
+        end
+
+        function stats_back.loadCsvList()
+            newrun = true
+            if newrun then 
+                delete_all_files()
+            end
+            for index, filename in ipairs(filename_list) do
+                stats_back.loadCsvSingle(filename, data_list[index])
+            end
+            return data_list
+        end
+
+        (in stats_init.lua)
+        local function is_game_existing()
+            local file = io.open(file_path, "r")
+            if not file then
+            --error("Failed to open file for writing: " .. stats_init.save_filename)
+                return false
+            end
+        end
+
+        -- setup all data when called by main, and call save_to_main to indeed save to main
+        function stats_init.data_setup()
+            -- if no game existing -- start new
+            if not is_game_existing() then
+                os.execute("mkdir -p " .. dir)
+                stats_init.data = {}
+                stats_init.create_new_player()
+            -- if game existing -- load data from file to data table
+            else
+                local file = io.open(file_path, "r")
+                local contents = file:read("*a") -- read the contents of the file
+                file:close()
+
+                if contents and contents ~= "" then
+                    stats_init.data = lume.deserialize(contents)
+                else
+                    stats_init.data = {}
+                    stats_init.create_new_player()
+                end
+
+                if not is_game_existing() then
+                    error("Failed to create new player data file.")
+                end
+            end
+        end
+            </pre>
+        <p><b>DESCRIPTION</b><br>
+            - How have you automated your tests so that they both take "1-click" to run and run automatically as part of
+            build validation.<br>
+            The limited testing capacity of Lua made me think creatively of the testing strategies I can use to validate
+            the correct execution of my code. Therefore, I used the flag "newrun" to mark whether the run was a test run
+            or not. For example, in stats_back.loadCsvList() I was loading all the files with environment information
+            (friends, classmates and family). These would normally occur only once, at the start of the game and then
+            record the user interction with the game and save it for later retrieval. However, this limited my ability
+            to check whether they are correctly done (whether they are randomized, and whether they behave correctly
+            given different randomized data used from pre-created source files). So, using the flags as "1-click"
+            testing option was very helpful in the testing process. However, it does not run concurrenly with the game
+            exacution. On the other hand, there are features that do such as is is_game_existing(), which can assess
+            whether the game data exist (meaning that it's not the first game run, and data needs retrieval). If an
+            attempt to do so was made, but the data file was not successfully created, then an error would occur as
+            shown towards the last lines of stats_init.data_setup(). This combines the practical development
+            functionality of the testing with practical use for users needs.<br>
+            - Describe a specific occurrence in which your testing infrastructure saved you and/or your team work?<br>
+            It was really helpful to use the flag in debugging so that I can see a clear view of what the data saving
+            situation is like. For example, when looking at the saved I realized that when recording parent information
+            in setup_family.lua I would end up with columns misplaced for the parents, but not the children. That
+            inclined me to investigate the issue and find out that the format of fetching jobs from a job source file
+            sometimes resulted in an additional space being added to the job string, which translated to an additional
+            column in the created cvs data file. Thanks to this testing feature I was able to experiment with different
+            random formats and observe the changes in the formatting problems based on number of children created, or
+            the types of jobs selected for the parents.<br><br>
+        </p>
         <li>Design: Needfinding</li><br>
         <b>WHERE: Assignment on Needfinding and Ideation -- observation 1</b><br>
         <b>MY CONTRIBUTION: An observation performed with a potential user of our app -- performed entirely by
@@ -156,7 +240,7 @@
             a very straight-forward user interface. They also seemed to be naturally drawn to positively impact the life
             of their character and set them up for a success in all dimensions of the game (so generally, improving the
             life scores, academic performance when in school and work performance when at workforce). That seemed to
-            show that BitLife design can serve as a compelling model for our application<br>
+            show that BitLife design can serve as a compelling model for our application<br><br>
         </p>
         <li>Design: Prototyping</li><br>
         <p><b>WHERE</b>: Prototyping assignment submission</p><br>
@@ -186,7 +270,7 @@
             prototype in resemblance to BitLife made it appear too "crowded" with the design elements, and suggested to
             me that it may be more appropriate to keep rather straight-forward design that does not take away from
             gameplay but is not as overstimulating (for example, the main menu includes a lot of information that
-            otherwise could have been accessed by pressing onto a button for "more information")<br>
+            otherwise could have been accessed by pressing onto a button for "more information")<br><br>
         </p>
         <li>Design: Evaluation</li><br>
         <li>Engineering: Infrastructure</li>

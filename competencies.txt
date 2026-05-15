@@ -119,11 +119,46 @@ function stats_back.loadCsvList()
     return data_list
 end
 
-z
-How have you automated your tests so that they both take "1-click" to run and run automatically as part of build validation.
-- 
-Describe a specific occurrence in which your testing infrastructure saved you and/or your team work?
+(in stats_init.lua)
+local function is_game_existing()
+    local file = io.open(file_path, "r")
+    if not file then
+    --error("Failed to open file for writing: " .. stats_init.save_filename)
+        return false
+    end
+end
 
+-- setup all data when called by main, and call save_to_main to indeed save to main
+function stats_init.data_setup()
+	-- if no game existing -- start new
+	if not is_game_existing() then
+        os.execute("mkdir -p " .. dir)
+		stats_init.data = {}
+		stats_init.create_new_player()
+	-- if game existing -- load data from file to data table
+	else
+        local file = io.open(file_path, "r")
+        local contents = file:read("*a") -- read the contents of the file
+        file:close()
+
+        if contents and contents ~= "" then
+            stats_init.data = lume.deserialize(contents)
+        else
+            stats_init.data = {}
+            stats_init.create_new_player()
+        end
+
+        if not is_game_existing() then
+            error("Failed to create new player data file.")
+        end
+    end
+end
+
+How have you automated your tests so that they both take "1-click" to run and run automatically as part of build validation.
+- The limited testing capacity of Lua made me think creatively of the testing strategies I can use to validate the correct execution of my code. Therefore, I used the flag "newrun" to mark whether the run was a test run or not. For example, in stats_back.loadCsvList() I was loading all the files with environment information (friends, classmates and family). These would normally occur only once, at the start of the game and then record the user interction with the game and save it for later retrieval. However, this limited my ability to check whether they are correctly done (whether they are randomized, and whether they behave correctly given different randomized data used from pre-created source files). So, using the flags as "1-click" testing option was very helpful in the testing process. However, it does not run concurrenly with the game exacution. On the other hand, there are features that do such as is is_game_existing(), which can assess whether the game data exist (meaning that it's not the first game run, and data needs retrieval). If an attempt to do so was made, but the data file was not successfully created, then an error would occur as shown towards the last lines of stats_init.data_setup(). This combines the practical development functionality of the testing with practical use for users needs.
+
+Describe a specific occurrence in which your testing infrastructure saved you and/or your team work?
+- It was really helpful to use the flag in debugging so that I can see a clear view of what the data saving situation is like. For example, when looking at the saved I realized that when recording parent information in setup_family.lua I would end up with columns misplaced for the parents, but not the children. That inclined me to investigate the issue and find out that the format of fetching jobs from a job source file sometimes resulted in an additional space being added to the job string, which translated to an additional column in the created cvs data file. Thanks to this testing feature I was able to experiment with different random formats and observe the changes in the formatting problems based on number of children created, or the types of jobs selected for the parents.  
 
 
 --------------- Design ---------------
