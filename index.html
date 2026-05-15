@@ -7,10 +7,143 @@
     <h2>Required</h2>
     <ol>
         <li>Development: Medium-scale abstraction</li>
+        <p><b>WHERE<b>: scenes/manager.lua, all scene files in scene/..
+                    <b>MY CONTRIBUTION</b>: Coming up with the conceptual structure of the scene transitions, writing
+                    the code for manager.lua, creating the folder and sub-folder structure, as well as the scene
+                    transition calls across all the scenes. I used online reference to love2d and lua in coming up with
+                    this format, and used the help of genAI copilot in helping me with the code format and debaugging.
+
+                    <b>DESCRIPTION</b>:
+                    - What functionality does your code sample abstract away?
+                    The process of changing between menu items in the sub-menus of the game, so that no files need to be
+                    called explicitly. Instead of directly loading a file of the sub-menu, and creating a format to
+                    account for user interaction -- such as mouse clicks or pressing keys, but also accounting for
+                    love2d core operations -- updating, drawing and loading. This way I can have a structured control
+                    over all transitions abstracted to the form of "scenes" instead of specific file paths.
+
+                    - How does it mechanical achieve abstraction?
+                    It is done by the assignment of a new "current" scene to the scene provided by a current "current"
+                    scene. The program starts with an initial scene of logo.lua, proceeds to the login scenes and to the
+                    main scene of the game, and then the user can transition between the scenes by interacting with the
+                    user interface. The role of manager.lua is to take in the directions from scenes on what scene comes
+                    next -- whether automatically (like logo--login transition) or on demand (button press in menu) and
+                    call for the scene information to be loaded. This includes retriving the file data through
+                    loadScene(), ensuring the existance of a file, and then facilitating all user-interaction funcitons
+                    (key press, mouse press, text input) and love2d core functionalities -- drawing, updating and
+                    loading.
+
+                    - What purpose does this abstraction serve in your larger program?
+                    It simplifies the code significantly. The abstraction takes what all the scenes have in common --
+                    the need of handling user input and being responsive to love2d operations. It adds the conceptual
+                    structure to the way the scenes operate and provides a clean functionality that requires a potential
+                    developer to only concern themselves with single-scene functionality but no need to be call each of
+                    the scene functionalities explicitly in the caller snippet.
+        </p>
         <li>Development: Medium-scale architecture</li>
+        <p>
+            <b>WHERE</b>: stats_init.lua
+            <b>MY CONTRIBUTION</b>: MY CONTRIBUTION: Functions that interact with a statistics data file -- verify its
+            existance, load it, check or change value and update loaded table. Specficially, functions: save_data(),
+            stats_init.delete_save_file(), stats_init.change_stat(key, delta), is_game_existing(),
+            stats_init.load_data(path), stats_init.data_setup(), stats_init.change_value(key, new_value),
+            stats_init.reset_player_data(). I collaborated with Connor working on this file, but he was in charge of
+            creating the statistical updates to the table while I created the system of interacting with the text file
+            that holds information between the login sessions.
+            <b>DESCRIPTION</b>
+            - What architectural pattern does your program employ?
+            The program employs multilayer architectural pattern. There is a layer of interface presented to the user,
+            the operations underlying their actions and managing the display of the interface, the operations
+            interacting with the in-game data, as well as the operations that direct the interaction with data files. My
+            specific contribution discussed here relates to the creation of the data file and the intractions with it
+            that in turn inform back the in-game data and user interface.
+
+            - What components result from this pattern in your program?
+            The program divides the differnt layers into separate sets of directories with similar functionalities. For
+            example, each of the scenes refers to the style sheet that imports the visual information, such as pop-up
+            windows. These visual interface elements are directed by the scenes, which are responsive to user
+            interaction with the interface. Concurrently (or is it really concurrent, CSC213?) the program records user
+            interactions and updates the in-game data, and then updates the data stored in out-of-game text file, to
+            save the player's progress. The data and statistics manipulation is managed by the update() functionality of
+            love2d that allows for backend changes, while draw() facilitates front-end presentation to the user.
+
+            - What technologies and/or libraries make-up each of the components?
+            The game is created using love2d and lua language, and uses their features to employ our architecture. On of
+            love2d's core function -- draw(), facilitates the display of visuals to the user; load() enables timed
+            actions only upon the program startup, update() enables for regular updates of the backend information
+            (statistics, saving to the files).
+
+        </p>
         <li>Verification: Testing strategies</li>
+        <p> <b>WHERE</b>: setup_family.lua
+            <b>CODE SNIPPET: </b>
+            -- delete_save_file
+            -- deletes the file, so that we can test whether the file gets created again
+            function delete_save_file(filename)
+            if love.filesystem.getInfo(filename) then
+            -- empty out the file for all but the headers
+            local file = io.open(dir .. filename, "w")
+            if not file then
+            error("Failed to open file for writing: " .. dir .. filename)
+            end
+            file:write("id,first_name,last_name,age,sex,hometown,face_look_id,job,positive_relation,negative_relation\n")
+            file:close()
+            end
+            end
+
+
+            -- used later in the saving body of the code with:
+            newrun = true
+            if newrun then
+            delete_save_file("data_family.csv")
+            end
+            <b>MY CONTRIBUTION</b>:
+            - The code snippet comes from my contribution to the project - a data file and a set of operations that
+            underlie randomized generation of family members for the player. The code uses user's username to generate
+            family members with the same last name but a different first name -- two parents and a randomized number of
+            siblings. Their first names, and jobs are randomly selected from a data file available to the program, with
+            a geneder specificity of the name to the parents' genders. I was in charge of creating that code, and also
+            in charge of testing.
+            <b>DESCRIPTION</b>:
+            - According to code coverage tools, what aspects of this component are covered with tests?
+            The testing part presented here was used to delete the file when a "newrun" flag is selected. This was used
+            as a testing measure to make sure that the program actually writes to the file at each time that the game is
+            played, and that the name, age and jobs are actually random for each family member. This allowed also to
+            verify whether a non-repetitive number of siblings is being selected correctly, and the formatting or
+            resulting table saved into a data file is as expected. If not for the forceful flag-enforced deletion, these
+            capacities would not be testable in regular game timeline - as we cannot afford to execute the entire game
+            before checking these features.
+
+            - What kinds of tests are they?
+            The test enforces the use of a a function that erases previously saved data of players' family members, so
+            that the changes in recorded data file can be observed upon every iteration of game setup. To ensure the
+            correct execution of the tested functionality I used this feature multiple times during the testing
+            processes and recorded the data saved into the file to ensure the diversity of created family characters.
+            Furthermore, the code throws an error if the file tunrs out to be missing, ensuring that the deletion
+            function itself works correctly at wiping out only the necessary part of the data -- not deleting the file
+            or erasing headings.
+
+            - For code that is not covered by tests, why did you not cover them?
+            A significant part of the code's functionality can be observed indirectly thanks to the use of this test --
+            for example, loading of the source data files (names, jobs), as the successful implementation of these is
+            prerequisite to their diversed insertion into the data file. Also, while the code tests whether the
+            information was randomly selected, it is not really an efficent testing process (which really is not a
+            question in this sub-point, but is very relevant to my understanding and hopes for improvement of testing
+            abilities), as it requires multiple games to be played and a level of assumption as to whether the random
+            names are actually selected and we are not under illusion of random name/age/job selection. So in retrospect
+            it would have been more accurate to create a testing suite that generates a list of say 100 names (same with
+            jobs), and prints them into a testing file, wile calculating the number of times each appeared to ensure
+            reasonable distribution.
+
+        </p>
         <li>Verification: Testing infrastructure</li>
         <li>Design: Needfinding</li>
+        <b>WHERE: Assignment on Needfinding and Ideation -- observation 1</b>
+        <b>MY CONTRIBUTION: An observation performed with a potential user of our app -- performed entirely by
+            myself</b>
+        <p><b>DESCRIPTION</b>I completed an observation of a person interacting with a game used as an inspiration for
+            our project -- BitLife. For about 15 minutes I watched as they played with the application while recording
+            some of their choices, patterns of behavior and presumed reactions to what was happening in the game.</p>
+
         <li>Design: Prototyping</li>
         <li>Design: Evaluation</li>
         <li>Engineering: Infrastructure</li>
