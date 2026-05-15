@@ -97,7 +97,31 @@ A significant part of the code's functionality can be observed indirectly thanks
 --------------------------------------
 Testing infrastructure: Identify relevant components from your development infrastructure (IDE, build, etc.) that you use to test your project.
 --------------------------------------
+WHERE: stats_init.lua, stats_back.lua
+MY CONTRIBUTION: Creating the functionality for writing into the files and then testing whether the files are actually responsive to the change of in-game data (they update accordingly).
+
+CODE SNIPPET:
+(in stats_back.lua)
+function delete_all_files()
+    for _, filename in ipairs(filename_list) do
+        delete_save_file(filename)
+    end
+end
+
+function stats_back.loadCsvList()
+    newrun = true
+    if newrun then 
+        delete_all_files()
+    end
+    for index, filename in ipairs(filename_list) do
+        stats_back.loadCsvSingle(filename, data_list[index])
+    end
+    return data_list
+end
+
+z
 How have you automated your tests so that they both take "1-click" to run and run automatically as part of build validation.
+- 
 Describe a specific occurrence in which your testing infrastructure saved you and/or your team work?
 
 

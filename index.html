@@ -76,6 +76,7 @@
         <li>Verification: Testing strategies</li>
         <p> <b>WHERE</b>: setup_family.lua
             <b>CODE SNIPPET: </b>
+        <pre>
             -- delete_save_file
             -- deletes the file, so that we can test whether the file gets created again
             function delete_save_file(filename)
@@ -96,43 +97,44 @@
             if newrun then
             delete_save_file("data_family.csv")
             end
-            <b>MY CONTRIBUTION</b>:
-            - The code snippet comes from my contribution to the project - a data file and a set of operations that
-            underlie randomized generation of family members for the player. The code uses user's username to generate
-            family members with the same last name but a different first name -- two parents and a randomized number of
-            siblings. Their first names, and jobs are randomly selected from a data file available to the program, with
-            a geneder specificity of the name to the parents' genders. I was in charge of creating that code, and also
-            in charge of testing.
-            <b>DESCRIPTION</b>:
-            - According to code coverage tools, what aspects of this component are covered with tests?
-            The testing part presented here was used to delete the file when a "newrun" flag is selected. This was used
-            as a testing measure to make sure that the program actually writes to the file at each time that the game is
-            played, and that the name, age and jobs are actually random for each family member. This allowed also to
-            verify whether a non-repetitive number of siblings is being selected correctly, and the formatting or
-            resulting table saved into a data file is as expected. If not for the forceful flag-enforced deletion, these
-            capacities would not be testable in regular game timeline - as we cannot afford to execute the entire game
-            before checking these features.
+            </pre>
+        <b>MY CONTRIBUTION</b>:
+        - The code snippet comes from my contribution to the project - a data file and a set of operations that
+        underlie randomized generation of family members for the player. The code uses user's username to generate
+        family members with the same last name but a different first name -- two parents and a randomized number of
+        siblings. Their first names, and jobs are randomly selected from a data file available to the program, with
+        a geneder specificity of the name to the parents' genders. I was in charge of creating that code, and also
+        in charge of testing.
+        <b>DESCRIPTION</b>:
+        - According to code coverage tools, what aspects of this component are covered with tests?
+        The testing part presented here was used to delete the file when a "newrun" flag is selected. This was used
+        as a testing measure to make sure that the program actually writes to the file at each time that the game is
+        played, and that the name, age and jobs are actually random for each family member. This allowed also to
+        verify whether a non-repetitive number of siblings is being selected correctly, and the formatting or
+        resulting table saved into a data file is as expected. If not for the forceful flag-enforced deletion, these
+        capacities would not be testable in regular game timeline - as we cannot afford to execute the entire game
+        before checking these features.
 
-            - What kinds of tests are they?
-            The test enforces the use of a a function that erases previously saved data of players' family members, so
-            that the changes in recorded data file can be observed upon every iteration of game setup. To ensure the
-            correct execution of the tested functionality I used this feature multiple times during the testing
-            processes and recorded the data saved into the file to ensure the diversity of created family characters.
-            Furthermore, the code throws an error if the file tunrs out to be missing, ensuring that the deletion
-            function itself works correctly at wiping out only the necessary part of the data -- not deleting the file
-            or erasing headings.
+        - What kinds of tests are they?
+        The test enforces the use of a a function that erases previously saved data of players' family members, so
+        that the changes in recorded data file can be observed upon every iteration of game setup. To ensure the
+        correct execution of the tested functionality I used this feature multiple times during the testing
+        processes and recorded the data saved into the file to ensure the diversity of created family characters.
+        Furthermore, the code throws an error if the file tunrs out to be missing, ensuring that the deletion
+        function itself works correctly at wiping out only the necessary part of the data -- not deleting the file
+        or erasing headings.
 
-            - For code that is not covered by tests, why did you not cover them?
-            A significant part of the code's functionality can be observed indirectly thanks to the use of this test --
-            for example, loading of the source data files (names, jobs), as the successful implementation of these is
-            prerequisite to their diversed insertion into the data file. Also, while the code tests whether the
-            information was randomly selected, it is not really an efficent testing process (which really is not a
-            question in this sub-point, but is very relevant to my understanding and hopes for improvement of testing
-            abilities), as it requires multiple games to be played and a level of assumption as to whether the random
-            names are actually selected and we are not under illusion of random name/age/job selection. So in retrospect
-            it would have been more accurate to create a testing suite that generates a list of say 100 names (same with
-            jobs), and prints them into a testing file, wile calculating the number of times each appeared to ensure
-            reasonable distribution.
+        - For code that is not covered by tests, why did you not cover them?
+        A significant part of the code's functionality can be observed indirectly thanks to the use of this test --
+        for example, loading of the source data files (names, jobs), as the successful implementation of these is
+        prerequisite to their diversed insertion into the data file. Also, while the code tests whether the
+        information was randomly selected, it is not really an efficent testing process (which really is not a
+        question in this sub-point, but is very relevant to my understanding and hopes for improvement of testing
+        abilities), as it requires multiple games to be played and a level of assumption as to whether the random
+        names are actually selected and we are not under illusion of random name/age/job selection. So in retrospect
+        it would have been more accurate to create a testing suite that generates a list of say 100 names (same with
+        jobs), and prints them into a testing file, wile calculating the number of times each appeared to ensure
+        reasonable distribution.
 
         </p>
         <li>Verification: Testing infrastructure</li>
