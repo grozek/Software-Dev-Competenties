@@ -7,37 +7,37 @@
     <h2>Required</h2>
     <ol>
         <li>Development: Medium-scale abstraction</li>
-        <p><b>WHERE<b>: scenes/manager.lua, all scene files in scene/..
-                    <b>MY CONTRIBUTION</b>: Coming up with the conceptual structure of the scene transitions, writing
-                    the code for manager.lua, creating the folder and sub-folder structure, as well as the scene
-                    transition calls across all the scenes. I used online reference to love2d and lua in coming up with
-                    this format, and used the help of genAI copilot in helping me with the code format and debaugging.
+        <p><b>WHERE</p>b>: scenes/manager.lua, all scene files in scene/..
+        <b>MY CONTRIBUTION</b>: Coming up with the conceptual structure of the scene transitions, writing
+        the code for manager.lua, creating the folder and sub-folder structure, as well as the scene
+        transition calls across all the scenes. I used online reference to love2d and lua in coming up with
+        this format, and used the help of genAI copilot in helping me with the code format and debaugging.
 
-                    <b>DESCRIPTION</b>:
-                    - What functionality does your code sample abstract away?
-                    The process of changing between menu items in the sub-menus of the game, so that no files need to be
-                    called explicitly. Instead of directly loading a file of the sub-menu, and creating a format to
-                    account for user interaction -- such as mouse clicks or pressing keys, but also accounting for
-                    love2d core operations -- updating, drawing and loading. This way I can have a structured control
-                    over all transitions abstracted to the form of "scenes" instead of specific file paths.
+        <b>DESCRIPTION</b>:
+        - What functionality does your code sample abstract away?
+        The process of changing between menu items in the sub-menus of the game, so that no files need to be
+        called explicitly. Instead of directly loading a file of the sub-menu, and creating a format to
+        account for user interaction -- such as mouse clicks or pressing keys, but also accounting for
+        love2d core operations -- updating, drawing and loading. This way I can have a structured control
+        over all transitions abstracted to the form of "scenes" instead of specific file paths.
 
-                    - How does it mechanical achieve abstraction?
-                    It is done by the assignment of a new "current" scene to the scene provided by a current "current"
-                    scene. The program starts with an initial scene of logo.lua, proceeds to the login scenes and to the
-                    main scene of the game, and then the user can transition between the scenes by interacting with the
-                    user interface. The role of manager.lua is to take in the directions from scenes on what scene comes
-                    next -- whether automatically (like logo--login transition) or on demand (button press in menu) and
-                    call for the scene information to be loaded. This includes retriving the file data through
-                    loadScene(), ensuring the existance of a file, and then facilitating all user-interaction funcitons
-                    (key press, mouse press, text input) and love2d core functionalities -- drawing, updating and
-                    loading.
+        - How does it mechanical achieve abstraction?
+        It is done by the assignment of a new "current" scene to the scene provided by a current "current"
+        scene. The program starts with an initial scene of logo.lua, proceeds to the login scenes and to the
+        main scene of the game, and then the user can transition between the scenes by interacting with the
+        user interface. The role of manager.lua is to take in the directions from scenes on what scene comes
+        next -- whether automatically (like logo--login transition) or on demand (button press in menu) and
+        call for the scene information to be loaded. This includes retriving the file data through
+        loadScene(), ensuring the existance of a file, and then facilitating all user-interaction funcitons
+        (key press, mouse press, text input) and love2d core functionalities -- drawing, updating and
+        loading.
 
-                    - What purpose does this abstraction serve in your larger program?
-                    It simplifies the code significantly. The abstraction takes what all the scenes have in common --
-                    the need of handling user input and being responsive to love2d operations. It adds the conceptual
-                    structure to the way the scenes operate and provides a clean functionality that requires a potential
-                    developer to only concern themselves with single-scene functionality but no need to be call each of
-                    the scene functionalities explicitly in the caller snippet.
+        - What purpose does this abstraction serve in your larger program?
+        It simplifies the code significantly. The abstraction takes what all the scenes have in common --
+        the need of handling user input and being responsive to love2d operations. It adds the conceptual
+        structure to the way the scenes operate and provides a clean functionality that requires a potential
+        developer to only concern themselves with single-scene functionality but no need to be call each of
+        the scene functionalities explicitly in the caller snippet.
         </p>
         <li>Development: Medium-scale architecture</li>
         <p>
@@ -140,11 +140,45 @@
         <b>WHERE: Assignment on Needfinding and Ideation -- observation 1</b>
         <b>MY CONTRIBUTION: An observation performed with a potential user of our app -- performed entirely by
             myself</b>
-        <p><b>DESCRIPTION</b>I completed an observation of a person interacting with a game used as an inspiration for
+        <p><b>DESCRIPTION</b>
+            - I completed an observation of a person interacting with a game used as an inspiration for
             our project -- BitLife. For about 15 minutes I watched as they played with the application while recording
-            some of their choices, patterns of behavior and presumed reactions to what was happening in the game.</p>
+            some of their choices, patterns of behavior and presumed reactions to what was happening in the game.
+            - I found that the user was engaged in the game, and seemed to enjoy playing with it. It was interesting to
+            see them gain an understanding of the game's functionality without explicit need for a tutorial - thanks to
+            a very straight-forward user interface. They also seemed to be naturally drawn to positively impact the life
+            of their character and set them up for a success in all dimensions of the game (so generally, improving the
+            life scores, academic performance when in school and work performance when at workforce). That seemed to
+            show that BitLife design can serve as a compelling model for our application
+        </p>
 
         <li>Design: Prototyping</li>
+        <p><b>WHERE</b>: Prototyping assignment submission</p>
+        <p><b>MY CONTRIBUTION</b>: Conceptual and visual prototype of the game -- completed by myself</p>
+        <p><b>DESCRIPTION</b>
+            - I wanted to gain an understanding of how the design of BitLife can be adapted for our purposes -- what
+            elements that we identified as poor design decisions in the BitLife model can be improved, and which ones
+            are appealing to be inspired by in our design. Moreover, I wanted to sketch out the decision processes that
+            go into using the game -- what kind of functionalites we may need to consider in implementation of the menus
+            and buttons. For example, when do the users "return" to the main menu after completing an action -- is that
+            right after performing it, or should they be allowed to manually switch back to the main menu, or remain in
+            the sub-menu where their action was performed from instead?
+
+            - In my prototype I created a general sketch of the layout of the critical menu elements, so that it is
+            clear what kind of design elements are presumed to be considered in our development. It served as a good
+            starting point for the future developments of the visual design components, since we had the conceptual
+            framework done. I also prepared decision trees - one general showing the visual aspects of the game scenes
+            transition, and another one that treated the topic from rather conceptual perspective and showed a sample
+            transition between sub-menu sections.
+
+            - Most importantly, I realized that some of the BitLife functionalites were possibly too complex for us to
+            employ given the timeline of the project -- they used a variety of design choices that would require more
+            specificity in designing each sub-menu item than we intended to have. I also noticed how sketching out the
+            prototype in resemblance to BitLife made it appear too "crowded" with the design elements, and suggested to
+            me that it may be more appropriate to keep rather straight-forward design that does not take away from
+            gameplay but is not as overstimulating (for example, the main menu includes a lot of information that
+            otherwise could have been accessed by pressing onto a button for "more information")
+        </p>
         <li>Design: Evaluation</li>
         <li>Engineering: Infrastructure</li>
         <li>Engineering: Self-learning</li>

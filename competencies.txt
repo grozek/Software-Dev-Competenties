@@ -115,9 +115,17 @@ I found that the user was engaged in the game, and seemed to enjoy playing with 
 --------------------------------------
 Prototyping: Identify relevant artifacts from the human-centered design process that address the following points.
 --------------------------------------
+WHERE: Prototyping assignment submission
+MY CONTRIBUTION: Conceptual and visual prototype of the game -- completed by myself
+
 What design questions did your intend to answer with your prototype(s).
+- I wanted to gain an understanding of how the design of BitLife can be adapted for our purposes -- what elements that we identified as poor design decisions in the BitLife model can be improved, and which ones are appealing to be inspired by in our design. Moreover, I wanted to sketch out the decision processes that go into using the game -- what kind of functionalites we may need to consider in implementation of the menus and buttons. For example, when do the users "return" to the main menu after completing an action -- is that right after performing it, or should they be allowed to manually switch back to the main menu, or remain in the sub-menu where their action was performed from instead?
+
 How did you design your prototype(s) and subsequent user studies to address these questions?
+- In my prototype I created a general sketch of the layout of the critical menu elements, so that it is clear what kind of design elements are presumed to be considered in our development. It served as a good starting point for the future developments of the visual design components, since we had the conceptual framework done. I also prepared decision trees - one general showing the visual aspects of the game scenes transition, and another one that treated the topic from rather conceptual perspective and showed a sample transition between sub-menu sections. 
+
 What answers to your design questions did your efforts unveil?
+- Most importantly, I realized that some of the BitLife functionalites were possibly too complex for us to employ given the timeline of the project -- they used a variety of design choices that would require more specificity in designing each sub-menu item than we intended to have. I also noticed how sketching out the prototype in resemblance to BitLife made it appear too "crowded" with the design elements, and suggested to me that it may be more appropriate to keep rather straight-forward design that does not take away from gameplay but is not as overstimulating (for example, the main menu includes a lot of information that otherwise could have been accessed by pressing onto a button for "more information")
 
 --------------------------------------
 Evaluation: Identify relevant artifacts from the human-centered design process that address the following points.
