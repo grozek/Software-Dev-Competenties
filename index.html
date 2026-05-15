@@ -1,81 +1,84 @@
 <!DOCTYPE html>
 <html>
-<link rel="stylesheet" href="style.css">
+
+<head>
+    <link rel="stylesheet" href="style.css">
+</head>
 
 <body>
     <h1>My competencies</h1>
     <h2>Required</h2>
     <ol>
         <li>Development: Medium-scale abstraction</li>
-        <p><b>WHERE</p>b>: scenes/manager.lua, all scene files in scene/..
+        <p><b>WHERE</p></b>: scenes/manager.lua, all scene files in scene/..
         <b>MY CONTRIBUTION</b>: Coming up with the conceptual structure of the scene transitions, writing
         the code for manager.lua, creating the folder and sub-folder structure, as well as the scene
         transition calls across all the scenes. I used online reference to love2d and lua in coming up with
         this format, and used the help of genAI copilot in helping me with the code format and debaugging.
 
-        <b>DESCRIPTION</b>:
-        - What functionality does your code sample abstract away?
-        The process of changing between menu items in the sub-menus of the game, so that no files need to be
-        called explicitly. Instead of directly loading a file of the sub-menu, and creating a format to
-        account for user interaction -- such as mouse clicks or pressing keys, but also accounting for
-        love2d core operations -- updating, drawing and loading. This way I can have a structured control
-        over all transitions abstracted to the form of "scenes" instead of specific file paths.
+        <p><b>DESCRIPTION</b>:
+            - What functionality does your code sample abstract away?<br>
+            The process of changing between menu items in the sub-menus of the game, so that no files need to be
+            called explicitly. Instead of directly loading a file of the sub-menu, and creating a format to
+            account for user interaction -- such as mouse clicks or pressing keys, but also accounting for
+            love2d core operations -- updating, drawing and loading. This way I can have a structured control
+            over all transitions abstracted to the form of "scenes" instead of specific file paths.<br>
 
-        - How does it mechanical achieve abstraction?
-        It is done by the assignment of a new "current" scene to the scene provided by a current "current"
-        scene. The program starts with an initial scene of logo.lua, proceeds to the login scenes and to the
-        main scene of the game, and then the user can transition between the scenes by interacting with the
-        user interface. The role of manager.lua is to take in the directions from scenes on what scene comes
-        next -- whether automatically (like logo--login transition) or on demand (button press in menu) and
-        call for the scene information to be loaded. This includes retriving the file data through
-        loadScene(), ensuring the existance of a file, and then facilitating all user-interaction funcitons
-        (key press, mouse press, text input) and love2d core functionalities -- drawing, updating and
-        loading.
+            - How does it mechanical achieve abstraction?<br>
+            It is done by the assignment of a new "current" scene to the scene provided by a current "current"
+            scene. The program starts with an initial scene of logo.lua, proceeds to the login scenes and to the
+            main scene of the game, and then the user can transition between the scenes by interacting with the
+            user interface. The role of manager.lua is to take in the directions from scenes on what scene comes
+            next -- whether automatically (like logo--login transition) or on demand (button press in menu) and
+            call for the scene information to be loaded. This includes retriving the file data through
+            loadScene(), ensuring the existance of a file, and then facilitating all user-interaction funcitons
+            (key press, mouse press, text input) and love2d core functionalities -- drawing, updating and
+            loading.<br>
 
-        - What purpose does this abstraction serve in your larger program?
-        It simplifies the code significantly. The abstraction takes what all the scenes have in common --
-        the need of handling user input and being responsive to love2d operations. It adds the conceptual
-        structure to the way the scenes operate and provides a clean functionality that requires a potential
-        developer to only concern themselves with single-scene functionality but no need to be call each of
-        the scene functionalities explicitly in the caller snippet.
+            - What purpose does this abstraction serve in your larger program?<br>
+            It simplifies the code significantly. The abstraction takes what all the scenes have in common --
+            the need of handling user input and being responsive to love2d operations. It adds the conceptual
+            structure to the way the scenes operate and provides a clean functionality that requires a potential
+            developer to only concern themselves with single-scene functionality but no need to be call each of
+            the scene functionalities explicitly in the caller snippet.<br>
         </p>
         <li>Development: Medium-scale architecture</li>
         <p>
-            <b>WHERE</b>: stats_init.lua
+            <b>WHERE</b>: stats_init.lua<br>
             <b>MY CONTRIBUTION</b>: MY CONTRIBUTION: Functions that interact with a statistics data file -- verify its
             existance, load it, check or change value and update loaded table. Specficially, functions: save_data(),
             stats_init.delete_save_file(), stats_init.change_stat(key, delta), is_game_existing(),
             stats_init.load_data(path), stats_init.data_setup(), stats_init.change_value(key, new_value),
             stats_init.reset_player_data(). I collaborated with Connor working on this file, but he was in charge of
             creating the statistical updates to the table while I created the system of interacting with the text file
-            that holds information between the login sessions.
-            <b>DESCRIPTION</b>
-            - What architectural pattern does your program employ?
+            that holds information between the login sessions.<br>
+            <b>DESCRIPTION</b><br>
+            - What architectural pattern does your program employ?<br>
             The program employs multilayer architectural pattern. There is a layer of interface presented to the user,
             the operations underlying their actions and managing the display of the interface, the operations
             interacting with the in-game data, as well as the operations that direct the interaction with data files. My
             specific contribution discussed here relates to the creation of the data file and the intractions with it
-            that in turn inform back the in-game data and user interface.
+            that in turn inform back the in-game data and user interface.<br>
 
-            - What components result from this pattern in your program?
+            - What components result from this pattern in your program?<br>
             The program divides the differnt layers into separate sets of directories with similar functionalities. For
             example, each of the scenes refers to the style sheet that imports the visual information, such as pop-up
             windows. These visual interface elements are directed by the scenes, which are responsive to user
             interaction with the interface. Concurrently (or is it really concurrent, CSC213?) the program records user
             interactions and updates the in-game data, and then updates the data stored in out-of-game text file, to
             save the player's progress. The data and statistics manipulation is managed by the update() functionality of
-            love2d that allows for backend changes, while draw() facilitates front-end presentation to the user.
+            love2d that allows for backend changes, while draw() facilitates front-end presentation to the user.<br>
 
-            - What technologies and/or libraries make-up each of the components?
+            - What technologies and/or libraries make-up each of the components?<br>
             The game is created using love2d and lua language, and uses their features to employ our architecture. On of
             love2d's core function -- draw(), facilitates the display of visuals to the user; load() enables timed
             actions only upon the program startup, update() enables for regular updates of the backend information
-            (statistics, saving to the files).
+            (statistics, saving to the files).<br>
 
         </p>
         <li>Verification: Testing strategies</li>
-        <p> <b>WHERE</b>: setup_family.lua
-            <b>CODE SNIPPET: </b>
+        <p> <b>WHERE</b>: setup_family.lua<br>
+            <b>CODE SNIPPET: </b><br>
         <pre>
             -- delete_save_file
             -- deletes the file, so that we can test whether the file gets created again
@@ -98,14 +101,14 @@
             delete_save_file("data_family.csv")
             end
             </pre>
-        <b>MY CONTRIBUTION</b>:
+        <b>MY CONTRIBUTION</b>:<br>
         - The code snippet comes from my contribution to the project - a data file and a set of operations that
         underlie randomized generation of family members for the player. The code uses user's username to generate
         family members with the same last name but a different first name -- two parents and a randomized number of
         siblings. Their first names, and jobs are randomly selected from a data file available to the program, with
         a geneder specificity of the name to the parents' genders. I was in charge of creating that code, and also
-        in charge of testing.
-        <b>DESCRIPTION</b>:
+        in charge of testing.<br>
+        <b>DESCRIPTION</b>:<br>
         - According to code coverage tools, what aspects of this component are covered with tests?
         The testing part presented here was used to delete the file when a "newrun" flag is selected. This was used
         as a testing measure to make sure that the program actually writes to the file at each time that the game is
@@ -113,18 +116,18 @@
         verify whether a non-repetitive number of siblings is being selected correctly, and the formatting or
         resulting table saved into a data file is as expected. If not for the forceful flag-enforced deletion, these
         capacities would not be testable in regular game timeline - as we cannot afford to execute the entire game
-        before checking these features.
+        before checking these features.<br>
 
-        - What kinds of tests are they?
+        - What kinds of tests are they?<br>
         The test enforces the use of a a function that erases previously saved data of players' family members, so
         that the changes in recorded data file can be observed upon every iteration of game setup. To ensure the
         correct execution of the tested functionality I used this feature multiple times during the testing
         processes and recorded the data saved into the file to ensure the diversity of created family characters.
         Furthermore, the code throws an error if the file tunrs out to be missing, ensuring that the deletion
         function itself works correctly at wiping out only the necessary part of the data -- not deleting the file
-        or erasing headings.
+        or erasing headings.<br>
 
-        - For code that is not covered by tests, why did you not cover them?
+        - For code that is not covered by tests, why did you not cover them?<br>
         A significant part of the code's functionality can be observed indirectly thanks to the use of this test --
         for example, loading of the source data files (names, jobs), as the successful implementation of these is
         prerequisite to their diversed insertion into the data file. Also, while the code tests whether the
@@ -134,54 +137,58 @@
         names are actually selected and we are not under illusion of random name/age/job selection. So in retrospect
         it would have been more accurate to create a testing suite that generates a list of say 100 names (same with
         jobs), and prints them into a testing file, wile calculating the number of times each appeared to ensure
-        reasonable distribution.
+        reasonable distribution.<br>
 
         </p>
-        <li>Verification: Testing infrastructure</li>
-        <li>Design: Needfinding</li>
-        <b>WHERE: Assignment on Needfinding and Ideation -- observation 1</b>
+        <li>Verification: Testing infrastructure</li><br>
+        <li>Design: Needfinding</li><br>
+        <b>WHERE: Assignment on Needfinding and Ideation -- observation 1</b><br>
         <b>MY CONTRIBUTION: An observation performed with a potential user of our app -- performed entirely by
-            myself</b>
-        <p><b>DESCRIPTION</b>
-            - I completed an observation of a person interacting with a game used as an inspiration for
+            myself</b><br>
+        <p><b>DESCRIPTION</b><br>
+            - What techniques did you employ to discover users' needs?<br>
+            I completed an observation of a person interacting with a game used as an inspiration for
             our project -- BitLife. For about 15 minutes I watched as they played with the application while recording
-            some of their choices, patterns of behavior and presumed reactions to what was happening in the game.
-            - I found that the user was engaged in the game, and seemed to enjoy playing with it. It was interesting to
+            some of their choices, patterns of behavior and presumed reactions to what was happening in the game.<br>
+            - What did you learn about users' needs from this process?<br>
+            I found that the user was engaged in the game, and seemed to enjoy playing with it. It was interesting to
             see them gain an understanding of the game's functionality without explicit need for a tutorial - thanks to
             a very straight-forward user interface. They also seemed to be naturally drawn to positively impact the life
             of their character and set them up for a success in all dimensions of the game (so generally, improving the
             life scores, academic performance when in school and work performance when at workforce). That seemed to
-            show that BitLife design can serve as a compelling model for our application
+            show that BitLife design can serve as a compelling model for our application<br>
         </p>
-
-        <li>Design: Prototyping</li>
-        <p><b>WHERE</b>: Prototyping assignment submission</p>
-        <p><b>MY CONTRIBUTION</b>: Conceptual and visual prototype of the game -- completed by myself</p>
-        <p><b>DESCRIPTION</b>
-            - I wanted to gain an understanding of how the design of BitLife can be adapted for our purposes -- what
+        <li>Design: Prototyping</li><br>
+        <p><b>WHERE</b>: Prototyping assignment submission</p><br>
+        <p><b>MY CONTRIBUTION</b>: Conceptual and visual prototype of the game -- completed by myself</p><br>
+        <p><b>DESCRIPTION</b><br>
+            - What design questions did your intend to answer with your prototype(s)<br>
+            I wanted to gain an understanding of how the design of BitLife can be adapted for our purposes -- what
             elements that we identified as poor design decisions in the BitLife model can be improved, and which ones
             are appealing to be inspired by in our design. Moreover, I wanted to sketch out the decision processes that
             go into using the game -- what kind of functionalites we may need to consider in implementation of the menus
             and buttons. For example, when do the users "return" to the main menu after completing an action -- is that
             right after performing it, or should they be allowed to manually switch back to the main menu, or remain in
-            the sub-menu where their action was performed from instead?
+            the sub-menu where their action was performed from instead?<br>
 
-            - In my prototype I created a general sketch of the layout of the critical menu elements, so that it is
+            - How did you design your prototype(s) and subsequent user studies to address these questions?<br>
+            In my prototype I created a general sketch of the layout of the critical menu elements, so that it is
             clear what kind of design elements are presumed to be considered in our development. It served as a good
             starting point for the future developments of the visual design components, since we had the conceptual
             framework done. I also prepared decision trees - one general showing the visual aspects of the game scenes
             transition, and another one that treated the topic from rather conceptual perspective and showed a sample
-            transition between sub-menu sections.
+            transition between sub-menu sections.<br>
 
-            - Most importantly, I realized that some of the BitLife functionalites were possibly too complex for us to
+            - What answers to your design questions did your efforts unveil?<br>
+            Most importantly, I realized that some of the BitLife functionalites were possibly too complex for us to
             employ given the timeline of the project -- they used a variety of design choices that would require more
             specificity in designing each sub-menu item than we intended to have. I also noticed how sketching out the
             prototype in resemblance to BitLife made it appear too "crowded" with the design elements, and suggested to
             me that it may be more appropriate to keep rather straight-forward design that does not take away from
             gameplay but is not as overstimulating (for example, the main menu includes a lot of information that
-            otherwise could have been accessed by pressing onto a button for "more information")
+            otherwise could have been accessed by pressing onto a button for "more information")<br>
         </p>
-        <li>Design: Evaluation</li>
+        <li>Design: Evaluation</li><br>
         <li>Engineering: Infrastructure</li>
         <li>Engineering: Self-learning</li>
         <li>Engineering: Process</li>
